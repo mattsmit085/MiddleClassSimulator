@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{803C31DF-0979-4AD1-A57E-1555B003761B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Jorj</RootNamespace>
+    <AssemblyName>Jorj</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Driving.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Driving.Designer.cs">
+      <DependentUpon>Driving.cs</DependentUpon>
+    </Compile>
+    <Compile Include="instructions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="instructions.Designer.cs">
+      <DependentUpon>instructions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="L1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="L1.Designer.cs">
+      <DependentUpon>L1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="loseScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="loseScreen.Designer.cs">
+      <DependentUpon>loseScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MenuScreen.Designer.cs">
+      <DependentUpon>MenuScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Phone.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Phone.Designer.cs">
+      <DependentUpon>Phone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="product.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sleep.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="sleep.Designer.cs">
+      <DependentUpon>sleep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Work1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Work1.Designer.cs">
+      <DependentUpon>Work1.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Driving.resx">
+      <DependentUpon>Driving.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="instructions.resx">
+      <DependentUpon>instructions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="L1.resx">
+      <DependentUpon>L1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="loseScreen.resx">
+      <DependentUpon>loseScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuScreen.resx">
+      <DependentUpon>MenuScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Phone.resx">
+      <DependentUpon>Phone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="sleep.resx">
+      <DependentUpon>sleep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Work1.resx">
+      <DependentUpon>Work1.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WALK1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WALK2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WALK3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\JUMP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TITLE.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PHONE-BG.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BUY-CAR---INSUFFICIENT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BUY-CAR---CAN-BUY.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CAR.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CAROWNED.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DRIVING-GIF.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\d %283%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\d %281%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\d %282%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AWAZONBG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\battery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nerf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shampoo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\instruction-screen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sleep-screen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moneyPNG.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
