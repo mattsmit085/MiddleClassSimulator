@@ -7,18 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Media;
 
 namespace Jorj
 {
     public partial class MenuScreen : UserControl
     {
+
+        SoundPlayer MainTheme = new SoundPlayer(Properties.Resources.MAIN_THEME);
+
         public MenuScreen()
         {
             InitializeComponent();
+            MainTheme.Play();
         }
 
         private void startButton_Click(object sender, EventArgs e)
         {
+            MainTheme.Stop();
             Form f = this.FindForm();
             f.Controls.Remove(this);
 

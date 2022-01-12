@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
+using System.Media;
 
 namespace Jorj
 {
@@ -34,10 +36,14 @@ namespace Jorj
         int typeofWork = 1;
         bool phonescreen = false;
 
+        System.Windows.Media.MediaPlayer backMedia = new System.Windows.Media.MediaPlayer();
+
+        SoundPlayer Walk = new SoundPlayer(Properties.Resources.Walk);
+
         //PLAYER
         public static int playerX = 20;
         public static float playerY = 218.8f;
-        public static  int playerWidth = 32;
+        public static int playerWidth = 32;
         public static int playerHeight = 56;
         public static int playerSpeed = 3;
         public static bool jumpOK = true;
@@ -61,6 +67,7 @@ namespace Jorj
         bool dDown = false;
         bool fDown = false;
         bool shiftDown = false;
+        bool playWalkSound = false;
 
         Rectangle FloorRec;
         Rectangle HeroRec;
@@ -71,6 +78,18 @@ namespace Jorj
         public L1()
         {
             InitializeComponent();
+            backMedia.Open(new Uri(Application.StartupPath + "/Walk.wav"));
+            backMedia.MediaEnded += new EventHandler(backMedia_MediaEnded);
+        }
+
+        private void backMedia_MediaEnded(object sender, EventArgs e)
+
+        {
+
+            backMedia.Stop();
+
+            backMedia.Play();
+
         }
 
         private void L1_Load(object sender, EventArgs e)
@@ -227,6 +246,8 @@ namespace Jorj
 
             if (aDown == true)
             {
+                backMedia.Play();
+
                 playerX -= playerSpeed;
 
                 imageChangeTimer++;
@@ -241,9 +262,11 @@ namespace Jorj
                     imageChangeTimer = 0;
                 }
             }
-            if (dDown == true)
-            {
 
+            else if (dDown == true)
+            {
+                backMedia.Play();
+                playWalkSound = true;
                 playerX += playerSpeed;
                 imageChangeTimer++;
 
@@ -257,6 +280,13 @@ namespace Jorj
                     imageChangeTimer = 0;
                 }
             }
+
+            else
+            {
+                playWalkSound = false;
+            }
+
+
             #endregion
             LevelCheck();
 

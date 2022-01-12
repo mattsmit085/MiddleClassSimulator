@@ -29,28 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Button backPhoneButton;
             this.carPicture = new System.Windows.Forms.PictureBox();
             this.PauseEngine = new System.Windows.Forms.Timer(this.components);
             this.balanceLabel = new System.Windows.Forms.Label();
             this.debtLabel = new System.Windows.Forms.Label();
             this.paymentPicture = new System.Windows.Forms.PictureBox();
-            backPhoneButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.carPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentPicture)).BeginInit();
             this.SuspendLayout();
-            // 
-            // backPhoneButton
-            // 
-            backPhoneButton.Enabled = false;
-            backPhoneButton.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            backPhoneButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            backPhoneButton.Location = new System.Drawing.Point(431, 309);
-            backPhoneButton.Name = "backPhoneButton";
-            backPhoneButton.Size = new System.Drawing.Size(106, 23);
-            backPhoneButton.TabIndex = 4;
-            backPhoneButton.Text = "BACK";
-            backPhoneButton.UseVisualStyleBackColor = true;
             // 
             // carPicture
             // 
@@ -112,7 +98,6 @@
             this.BackgroundImage = global::Jorj.Properties.Resources.PHONE_BG;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Controls.Add(this.paymentPicture);
-            this.Controls.Add(backPhoneButton);
             this.Controls.Add(this.debtLabel);
             this.Controls.Add(this.balanceLabel);
             this.Controls.Add(this.carPicture);

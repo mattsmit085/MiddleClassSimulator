@@ -73,26 +73,13 @@ namespace Jorj
             {
                 L1.balance -= 500;
                 L1.ownCar = true;
-                L1.balance = 0;
             }
         }
-
-
-
-        //private void backPhoneButton_Click(object sender, EventArgs e)
-        //{
-        //    Form f = this.FindForm();
-        //    f.Controls.Remove(this);
-
-        //    L1 l = new L1();
-        //    f.Controls.Add(l);
-        //    this.Focus();
-        //    this.BringToFront();
-        //}
 
         private void paymentPicture_Click(object sender, EventArgs e)
         {
             L1.debt -= L1.balance;
+            L1.balance = 0;
         }
     }
 }
