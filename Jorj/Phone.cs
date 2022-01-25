@@ -36,17 +36,21 @@ namespace Jorj
             }
         }
 
+        //STOP GAME ENGINE
         private void PauseEngine_Tick(object sender, EventArgs e)
         {
 
-            balanceLabel.Text = $" $ {L1.balance}";
-            debtLabel.Text = $" $ {L1.debt}";
+            balanceLabel.Text = $"BALANCE: ${L1.balance}";
+            debtLabel.Text = $"DEBT: ${L1.debt}";
 
             if (George.showPhone == true && fDown)
             {
                 PauseEngine.Enabled = false;
                 George.showPhone = false;
-                this.Dispose();
+                Form f = this.FindForm();
+                f.Controls.Remove(this);
+
+                //this.Dispose();
             }
 
             if (L1.ownCar == true)
@@ -67,6 +71,8 @@ namespace Jorj
             Refresh();
         }
 
+
+        // ON CLICK
         private void carPicture_Click(object sender, EventArgs e)
         {
             if (L1.balance >= 500 && L1.ownCar == false)
@@ -80,6 +86,19 @@ namespace Jorj
         {
             L1.debt -= L1.balance;
             L1.balance = 0;
+
+            if (L1.debt <= 0)
+            {
+                PauseEngine.Enabled = false;
+                George.showPhone = false;
+                Form f = this.FindForm();
+                f.Controls.Remove(this);
+            }
+        }
+
+        private void balanceLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

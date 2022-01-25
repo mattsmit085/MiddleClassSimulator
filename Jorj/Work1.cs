@@ -17,24 +17,68 @@ namespace Jorj
         //PRODUCT
         List<product> products = new List<product>();
 
+        System.Windows.Media.MediaPlayer WorkTheme = new System.Windows.Media.MediaPlayer();
+        System.Windows.Media.MediaPlayer BoxItem = new System.Windows.Media.MediaPlayer();
+        System.Windows.Media.MediaPlayer WrongItem = new System.Windows.Media.MediaPlayer();
+
         bool spaceDown = false;
 
         int timer = 0;
         int wait;
         int warning;
         public int money;
+        int earning = 15;
 
         public Work1()
         {
-            InitializeComponent();
 
+            InitializeComponent();
+            WorkTheme.Open(new Uri(Application.StartupPath + "/Resources/WorkTheme.wav"));
+            WorkTheme.MediaEnded += new EventHandler(backMedia_MediaEnded);
+
+            WrongItem.Open(new Uri(Application.StartupPath + "/Resources/ErrorSound2.wav"));
+            WrongItem.MediaEnded += new EventHandler(backMedia_MediaEnded);
+
+            BoxItem.Open(new Uri(Application.StartupPath + "/Resources/Box.wav"));
+            BoxItem.MediaEnded += new EventHandler(backMedia_MediaEnded);
+        }
+
+
+
+        private void backMedia_MediaEnded(object sender, EventArgs e)
+
+        {
+            BoxItem.Stop();
+            WrongItem.Stop();
         }
 
         private void Work1_Load(object sender, EventArgs e)
         {
+
             this.Focus();
             this.BringToFront();
+            WorkTheme.Play();
+
+            if (L1.day == 0)
+            {
+
+                raiseLabel.Enabled = true;
+                raiseLabel.Text = $"You're making: ${earning}";
+            }
+            else if (L1.day > 0)
+            {
+                earning += 15;
+                raiseLabel.Enabled = true;
+                raiseLabel.Text = $"You got a raise! You're making: ${earning}";
+            }
+            else
+            {
+                raiseLabel.Text = "";
+            }
+            L1.day++;
         }
+
+        //Game Engine
 
         private void workTimer_Tick(object sender, EventArgs e)
         {
@@ -59,6 +103,7 @@ namespace Jorj
 
             if (timer == 300)
             {
+                WorkTheme.Stop();
                 workTimer.Enabled = false;
                 Form f = this.FindForm();
                 f.Controls.Remove(this);
@@ -109,13 +154,15 @@ namespace Jorj
                     {
                         if (p.type == "gun")
                         {
+                            WrongItem.Play();
                             warning++;
                             products.Remove(p);
                             break;
                         }
                         else
                         {
-                            money += 25;
+                            BoxItem.Play();
+                            money += earning;
                             products.Remove(p);
                             break;
                         }
@@ -143,6 +190,8 @@ namespace Jorj
         {
         }
 
+
+        //ALL ART
         private void Work1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -160,6 +209,7 @@ namespace Jorj
         {
         }
 
+        //KEY DETECTION
         private void Work1_KeyUp(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)

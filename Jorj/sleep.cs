@@ -18,6 +18,7 @@ namespace Jorj
             InitializeComponent();
         }
 
+        // LOAD AND SWITCH
         private void sleep_Load(object sender, EventArgs e)
         {
 
@@ -30,9 +31,14 @@ namespace Jorj
             Form f = this.FindForm();
             f.Controls.Remove(this);
 
+            L1.backMedia.Stop();
+            L1.level = 0;
+            L1.playerX = 20;
+
             L1 l = new L1();
             f.Controls.Add(l);
             l.Focus();
+
         }
     }
 }

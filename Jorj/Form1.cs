@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
+
+//MATT SMITH
+//ICS4U - MR.T
+//MIDDLE CLASS SIMULATOR
+
 namespace Jorj
 {
     public partial class George : Form

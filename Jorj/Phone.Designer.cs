@@ -66,6 +66,7 @@
             this.balanceLabel.TabIndex = 1;
             this.balanceLabel.Text = "BALANCE: ";
             this.balanceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.balanceLabel.Click += new System.EventHandler(this.balanceLabel_Click);
             // 
             // debtLabel
             // 

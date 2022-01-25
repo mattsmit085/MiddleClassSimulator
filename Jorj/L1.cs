@@ -33,10 +33,10 @@ namespace Jorj
         int floorWidth = 555;
         int wholefloorHeight = 125;
         float gravity = 10;
-        int typeofWork = 1;
-        bool phonescreen = false;
+        public static int day;
 
-        System.Windows.Media.MediaPlayer backMedia = new System.Windows.Media.MediaPlayer();
+        public static System.Windows.Media.MediaPlayer backMedia = new System.Windows.Media.MediaPlayer();
+       public static System.Windows.Media.MediaPlayer JumpPlayer = new System.Windows.Media.MediaPlayer();
 
         SoundPlayer Walk = new SoundPlayer(Properties.Resources.Walk);
 
@@ -51,7 +51,7 @@ namespace Jorj
         public static int MoveUp = 1;
         public static int CurrentPosition;
 
-        public static int balance = 650;
+        public static int balance = 0;
         public static int debt = 10000;
 
         public static bool ownCar = false;
@@ -63,11 +63,8 @@ namespace Jorj
         //MOVEMENT
         bool wDown = false;
         bool aDown = false;
-        bool sDown = false;
         bool dDown = false;
-        bool fDown = false;
         bool shiftDown = false;
-        bool playWalkSound = false;
 
         Rectangle FloorRec;
         Rectangle HeroRec;
@@ -78,8 +75,10 @@ namespace Jorj
         public L1()
         {
             InitializeComponent();
-            backMedia.Open(new Uri(Application.StartupPath + "/Walk.wav"));
+            backMedia.Open(new Uri(Application.StartupPath + "/Resources/Walk.wav"));
+            JumpPlayer.Open(new Uri(Application.StartupPath + "/Resources/jump.wav"));
             backMedia.MediaEnded += new EventHandler(backMedia_MediaEnded);
+            JumpPlayer.MediaEnded += new EventHandler(backMedia_MediaEnded);
         }
 
         private void backMedia_MediaEnded(object sender, EventArgs e)
@@ -87,7 +86,7 @@ namespace Jorj
         {
 
             backMedia.Stop();
-
+            JumpPlayer.Stop();
             backMedia.Play();
 
         }
@@ -98,6 +97,8 @@ namespace Jorj
             playerX = CurrentPosition;
         }
 
+
+        //KEY DETECTION
         private void L1_KeyUp(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -108,17 +109,11 @@ namespace Jorj
                 case Keys.A:
                     aDown = false;
                     break;
-                case Keys.S:
-                    sDown = false;
-                    break;
                 case Keys.D:
                     dDown = false;
                     break;
                 case Keys.ShiftKey:
                     shiftDown = false;
-                    break;
-                case Keys.F:
-                    fDown = false;
                     break;
             }
         }
@@ -132,9 +127,6 @@ namespace Jorj
                 case Keys.A:
                     aDown = true;
                     break;
-                case Keys.S:
-                    sDown = true;
-                    break;
                 case Keys.D:
                     dDown = true;
                     break;
@@ -145,6 +137,7 @@ namespace Jorj
                     if (George.showPhone == false)
                     {
                         AddPhoneScreen();
+                        L1.backMedia.Stop();
                     }
                     else if (George.showPhone == true)
                     {
@@ -154,6 +147,7 @@ namespace Jorj
             }
         }
 
+        // PAINT
         private void L1_Paint(object sender, PaintEventArgs e)
         {
             //SKY
@@ -189,6 +183,18 @@ namespace Jorj
                 if (dayCheck == true)
                 {
                     e.Graphics.DrawString("It's a beautiful day", Algerian, BlackBrush, new Point(20, 30));
+                    if (HeroRec.IntersectsWith(CarRec))
+                    {
+                        backMedia.Stop();
+                        gameEngine.Enabled = false;
+                        playerX = playerX - 20;
+
+                        Form f = this.FindForm();
+                        f.Controls.Remove(this);
+                        Driving d = new Driving();
+                        f.Controls.Add(d);
+                        d.BringToFront();
+                    }
                 }
 
                 if (ownCar == true)
@@ -228,6 +234,7 @@ namespace Jorj
             //e.Graphics.FillRectangle(WhiteBrush, playerX, playerY, playerWidth, playerHeight);
         }
 
+        //GAME ENGINE
         private void gameEngine_Tick(object sender, EventArgs e)
         {
             //playerX = CurrentPosition;
@@ -266,7 +273,6 @@ namespace Jorj
             else if (dDown == true)
             {
                 backMedia.Play();
-                playWalkSound = true;
                 playerX += playerSpeed;
                 imageChangeTimer++;
 
@@ -281,30 +287,29 @@ namespace Jorj
                 }
             }
 
-            else
+            else if (aDown == false && dDown == false)
             {
-                playWalkSound = false;
+                backMedia.Stop();
             }
 
+            if (debt <= 0)
+            {
+                George.showPhone = false;
+                backMedia.Stop();
+                gameEngine.Enabled = false;
 
+                Form f = this.FindForm();
+                f.Controls.Remove(this);
+                WinScreen w = new WinScreen();
+                f.Controls.Add(w);
+                w.BringToFront();
+            }
             #endregion
             LevelCheck();
 
             if (ownCar == true)
             {
                 CarRec = new Rectangle(380, 220, 150, 75);
-
-                if (HeroRec.IntersectsWith(CarRec))
-                {
-                    gameEngine.Enabled = false;
-                    playerX = playerX - 20;
-
-                    Form f = this.FindForm();
-                    f.Controls.Remove(this);
-                    Driving d = new Driving();
-                    f.Controls.Add(d);
-                    d.BringToFront();
-                }
 
             }
 
@@ -313,6 +318,8 @@ namespace Jorj
 
             Refresh();
         }
+        
+        // OLD JUMP SYSTEM
         public void OLDHeroJump()
         {
 
@@ -355,10 +362,13 @@ namespace Jorj
             }
         }
 
+        // NEW JUMP SYSTEM
         public void HeroJumpSmooth()
         {
             if (wDown == true && jumpOK == true)
             {
+                backMedia.Stop();
+                JumpPlayer.Play();
                 gravity = -15;
                 jumpOK = false;
             }
@@ -367,6 +377,8 @@ namespace Jorj
             gravity += 0.8f;
         }
 
+
+        //COLLISION W FLOOR
         public void FloorCheck()
         {
             if (HeroRec.IntersectsWith(FloorRec))
@@ -378,6 +390,8 @@ namespace Jorj
             }
         }
 
+
+        //SAFETY VARIABLES
         public static void ResetPosition1()
         {
             playerX = 20;
@@ -463,7 +477,26 @@ namespace Jorj
 
         public void RemovePhoneScreen()
         {
+
             George.showPhone = false;
+        }
+
+        public static void ResetGame()
+        {
+            playerX = 20;
+            playerY = 218.8f;
+            playerWidth = 32;
+            playerHeight = 56;
+            playerSpeed = 3;
+            jumpOK = true;
+            jumpSpeed = 5;
+            MoveUp = 1;
+            balance = 650;
+            debt = 100;
+            level = 0;
+            dayCheck = true;
+            ownCar = false;
+
         }
     }
 }

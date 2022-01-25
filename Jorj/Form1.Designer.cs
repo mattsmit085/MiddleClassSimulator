@@ -30,12 +30,12 @@ namespace Jorj
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(George));
             this.gameEngine = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // gameEngine
             // 
-            this.gameEngine.Enabled = true;
             this.gameEngine.Interval = 10;
             // 
             // George
@@ -45,6 +45,7 @@ namespace Jorj
             this.ClientSize = new System.Drawing.Size(551, 344);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "George";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "George Chronicles";

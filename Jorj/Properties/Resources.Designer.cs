@@ -170,6 +170,15 @@ namespace Jorj.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream ErrorSound {
+            get {
+                return ResourceManager.GetStream("ErrorSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap gun {
@@ -233,6 +242,16 @@ namespace Jorj.Properties {
         internal static System.Drawing.Bitmap Nerf {
             get {
                 object obj = ResourceManager.GetObject("Nerf", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap oh_no_screen {
+            get {
+                object obj = ResourceManager.GetObject("oh-no-screen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -312,6 +331,16 @@ namespace Jorj.Properties {
         internal static System.Drawing.Bitmap WALK3 {
             get {
                 object obj = ResourceManager.GetObject("WALK3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WinScreen {
+            get {
+                object obj = ResourceManager.GetObject("WinScreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

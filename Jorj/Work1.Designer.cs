@@ -33,6 +33,7 @@
             this.georgeLabel = new System.Windows.Forms.Label();
             this.warningLabel = new System.Windows.Forms.Label();
             this.moneyLabel = new System.Windows.Forms.Label();
+            this.raiseLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // workTimer
@@ -72,11 +73,22 @@
             this.moneyLabel.TabIndex = 2;
             this.moneyLabel.Text = "EARNINGS:";
             // 
+            // raiseLabel
+            // 
+            this.raiseLabel.Enabled = false;
+            this.raiseLabel.ForeColor = System.Drawing.Color.DarkGreen;
+            this.raiseLabel.Location = new System.Drawing.Point(409, 302);
+            this.raiseLabel.Name = "raiseLabel";
+            this.raiseLabel.Size = new System.Drawing.Size(120, 29);
+            this.raiseLabel.TabIndex = 3;
+            this.raiseLabel.Text = "You got a raise! You\'re now making:";
+            // 
             // Work1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Jorj.Properties.Resources.AWAZONBG;
+            this.Controls.Add(this.raiseLabel);
             this.Controls.Add(this.moneyLabel);
             this.Controls.Add(this.warningLabel);
             this.Controls.Add(this.georgeLabel);
@@ -98,5 +110,6 @@
         private System.Windows.Forms.Label georgeLabel;
         private System.Windows.Forms.Label warningLabel;
         private System.Windows.Forms.Label moneyLabel;
+        private System.Windows.Forms.Label raiseLabel;
     }
 }
